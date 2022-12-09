@@ -11,10 +11,20 @@ const Main = (props) => {
 
     const handleKeywordChange = (e) => {
         setKeyword(e.target.value)
+        if (e.target.value === '') {
+            setLimit(5)
+        }
     }
 
     const showMore = () => {
         setLimit(limit+5)
+    }
+
+    const handleScroll = (e) => {
+        const element = e.target
+        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+            setTimeout(showMore, 1000)
+        }
     }
 
 
@@ -28,10 +38,9 @@ const Main = (props) => {
             </div>
             
             
-            <div className="h-1/2 w-3/4 overflow-auto	bg-white p-10">
+            <div className="h-1/2 w-3/4 overflow-auto	bg-white p-10" onScroll={handleScroll}>
                 <Filter limit={limit} data={data} keyword={keyword}/>
             </div>
-            <button onClick={showMore}>Show more</button>
             
         </div>
     )
