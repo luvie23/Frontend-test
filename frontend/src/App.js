@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from "react";
 import services from './services/SpaceX'
+import Main from './components/Main'
 
 function App() {
 
@@ -14,10 +15,8 @@ function App() {
   },[])
 
   return (
-    <div >
-      {data.map(element => (
-        console.log(element.flight_number, element.name, element.date_utc, element.details)
-      ))}
+    <div className="flex justify-center items-center">
+      <Main data={data}/>
     </div>
   );
 }
